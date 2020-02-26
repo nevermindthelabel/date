@@ -1,3 +1,12 @@
+#root {
+  height: 100vh;
+  background-image: url('./grandCanyonScaled.jpg');
+}
+
+.wrapper {
+  display: grid;
+}
+
 .App {
   text-align: center;
 }
