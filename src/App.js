@@ -26,6 +26,9 @@ function App() {
   }
 
   const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+  const feb = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28];
+  const febLeapYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
+  const otherDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
 
   const today = new Date().toLocaleDateString();
 
@@ -63,7 +66,7 @@ function App() {
           <option value="December">December</option>
         </select>
         <select onChange={handleDayChange} defaultValue={sessionStorage.day || date.getDate()}>
-          {days.map(day => <option value={day}>{day}</option>)}
+          {month === 'February' ? feb.map(day => <option value={day}>{day}</option>) : days.map(day => <option value={day}>{day}</option>)}
          </select>
         <input type="text" defaultValue={sessionStorage.year || date.getFullYear()} onChange={handelYearChange} maxLength="4" />
         <h3>{targetDate.toLocaleDateString()} is {numDay} days from now</h3>
