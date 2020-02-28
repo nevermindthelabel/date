@@ -66,10 +66,10 @@ function App() {
           <option value="December">December</option>
         </select>
         <select onChange={handleDayChange} defaultValue={sessionStorage.day || date.getDate()}>
-          {month === 'February' ? feb.map(day => <option value={day}>{day}</option>) : days.map(day => <option value={day}>{day}</option>)}
-         </select>
+          {month === 'February' && year % 4 == 0 ? febLeapYear.map((day, index) => <option value={day} key={index}>{day}</option>) : feb.map((day, index) => <option value={day} key={index}>{day}</option>) || month === 'January || March || May || July || August || October || December' ? days.map((day, index) => <option value={day} key={index}>{day}</option>) : otherDays.map((day, index) => <option value={day} key={index}>{day}</option>)}
+        </select>
         <input type="text" defaultValue={sessionStorage.year || date.getFullYear()} onChange={handelYearChange} maxLength="4" />
-        <h3>{targetDate.toLocaleDateString()} is {numDay} days from now</h3>
+        <h3>{targetDate.toLocaleDateString()} is {numDay + 1} days from now</h3>
       </div>
     </div>
   );
