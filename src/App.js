@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import dayjs from 'dayjs';
 import './App.css';
 
 function App() {
@@ -38,6 +37,8 @@ function App() {
 
   const targetDate = new Date(`${month} ${day} ${year}`);
 
+  const targetDateShort = targetDate.toLocaleDateString();
+
   const difference = targetDate - firstDay;
 
   const calc = 1000 * 60 * 60 * 24;
@@ -50,15 +51,15 @@ function App() {
         <p>Photo by <a href="https://unsplash.com/@acarrillo46"> Alan Carrillo</a> on <a href="https://unsplash.com/">Unsplash</a>.</p>
         <p>Today is {today}</p>
         <select onChange={handelChange} defaultValue={sessionStorage.month || date.toLocaleString('default', { month: 'long' })}>
-          {months.map((thisMonth, index) => <option value={thisMonth} key={index}>{thisMonth}</option> )}
+          {months.map((thisMonth, index) => <option value={thisMonth} key={index}>{thisMonth}</option>)}
         </select>
 
         <select onChange={handleDayChange} defaultValue={sessionStorage.day || date.getDate()}>
-          {month === 'February' && year % 4 == 0 ? febLeapYear.map((day, index) => <option value={day} key={index}>{day}</option>) : feb.map((day, index) => <option value={day} key={index}>{day}</option>) || month === 'January || March || May || July || August || October || December' ? days.map((day, index) => <option value={day} key={index}>{day}</option>) : otherDays.map((day, index) => <option value={day} key={index}>{day}</option>)}
+          {month === 'February' && year % 4 === 0 ? febLeapYear.map((day, index) => <option value={day} key={index}>{day}</option>) : feb.map((day, index) => <option value={day} key={index}>{day}</option>) || month === 'January || March || May || July || August || October || December' ? days.map((day, index) => <option value={day} key={index}>{day}</option>) : otherDays.map((day, index) => <option value={day} key={index}>{day}</option>)}
 
         </select>
         <input type="text" defaultValue={sessionStorage.year || date.getFullYear()} onChange={handelYearChange} maxLength="4" />
-        {!sessionStorage.month && !sessionStorage.day && !sessionStorage.year ? '' : <h3>{targetDate.toLocaleDateString()} is {numDay + 1} days from now</h3>}
+        {targetDateShort && !sessionStorage.month && !sessionStorage.day && !sessionStorage.year ? '' : <h3>{targetDateShort} is {numDay + 1} days from now</h3>}
       </div>
     </div>
   );
