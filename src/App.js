@@ -58,7 +58,7 @@ function App() {
 
         </select>
         <input type="text" defaultValue={sessionStorage.year || date.getFullYear()} onChange={handelYearChange} maxLength="4" />
-        <h3>{targetDate.toLocaleDateString()} is {numDay + 1} days from now</h3>
+        {!sessionStorage.month && !sessionStorage.day && !sessionStorage.year ? '' : <h3>{targetDate.toLocaleDateString()} is {numDay + 1} days from now</h3>}
       </div>
     </div>
   );
