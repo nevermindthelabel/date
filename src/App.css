@@ -10,3 +10,18 @@
 .App {
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  select {
+    width: 90%;
+    max-width: 90%;
+    height: 3em;
+    margin: 0.4em auto;
+  }
+
+  input {
+    width: 90%;
+    height: 3em;
+    margin: 0.4em auto;
+  }
+}
