@@ -32,8 +32,6 @@ function App() {
 
   const today = new Date().toLocaleDateString();
 
-  // const targetDate = new Date('April 29, 2020')
-
   const firstDay = new Date();
 
   const targetDate = new Date(`${month} ${day} ${year}`);
@@ -43,8 +41,6 @@ function App() {
   const calc = 1000 * 60 * 60 * 24;
 
   const numDay = Math.floor(difference / calc);
-
-  console.log(`It is ${numDay} days to ${targetDate}`)
 
   return (
     <div className="wrapper">
