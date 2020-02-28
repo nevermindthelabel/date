@@ -25,10 +25,12 @@ function App() {
     sessionStorage.setItem('year', e.target.value);
   }
 
-  const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-  const feb = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28];
-  const febLeapYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
-  const otherDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+  let days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+  let feb = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28];
+  let febLeapYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
+  let otherDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   const today = new Date().toLocaleDateString();
 
@@ -48,21 +50,12 @@ function App() {
         <p>Photo by <a href="https://unsplash.com/@acarrillo46"> Alan Carrillo</a> on <a href="https://unsplash.com/">Unsplash</a>.</p>
         <p>Today is {today}</p>
         <select onChange={handelChange} defaultValue={sessionStorage.month || date.toLocaleString('default', { month: 'long' })}>
-          <option value="January">January</option>
-          <option value="February">February</option>
-          <option value="March">March</option>
-          <option value="April">April</option>
-          <option value="May">May</option>
-          <option value="June">June</option>
-          <option value="July">July</option>
-          <option value="August">August</option>
-          <option value="September">September</option>
-          <option value="October">October</option>
-          <option value="November">November</option>
-          <option value="December">December</option>
+          {months.map((thisMonth, index) => <option value={thisMonth} key={index}>{thisMonth}</option> )}
         </select>
+
         <select onChange={handleDayChange} defaultValue={sessionStorage.day || date.getDate()}>
           {month === 'February' && year % 4 == 0 ? febLeapYear.map((day, index) => <option value={day} key={index}>{day}</option>) : feb.map((day, index) => <option value={day} key={index}>{day}</option>) || month === 'January || March || May || July || August || October || December' ? days.map((day, index) => <option value={day} key={index}>{day}</option>) : otherDays.map((day, index) => <option value={day} key={index}>{day}</option>)}
+
         </select>
         <input type="text" defaultValue={sessionStorage.year || date.getFullYear()} onChange={handelYearChange} maxLength="4" />
         <h3>{targetDate.toLocaleDateString()} is {numDay + 1} days from now</h3>
